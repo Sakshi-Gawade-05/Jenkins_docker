@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''cp -r /var/lib/jenkins/workspace/deploy/target/*.war .
+                    sh '''cp -r /home/ubuntu/workspace/deploy/target/*.war .
                     docker build -t sakshigawade/tomcat1 . 
                     docker login 
                     docker push sakshigawade/tomcat1'''
