@@ -5,12 +5,12 @@ pipeline {
             steps {
                 sh 'git init '
                 echo "Successful pull from Git"
-                git 'https://github.com/deepak-umre/dockerfile_tomcat.git'
+                git 'https://github.com/Sakshi-Gawade-05/jenkins_docker.git'
             }
         }
         stage('Build') {
             agent {
-                label 'docker'
+                label 'Docker'
             }
             steps {
                 echo "Building with Maven"
@@ -20,20 +20,20 @@ pipeline {
     
         stage('creating tomcat image Tomcat') {
             agent {
-                label 'docker'
+                label 'Docker'
             }
             steps {
                 script {
                     sh '''cp -r /var/lib/jenkins/workspace/deploy/target/*.war .
-                    docker build -t deepakumre/tomcat1 . 
+                    docker build -t sakshigawade/tomcat1 . 
                     docker login 
-                    docker push deepakumre/tomcat1'''
+                    docker push sakshigawade/tomcat1'''
                 }
             }
         }
         stage('build image on k8 ') {
             agent {
-                label 'docker'
+                label 'Docker'
             }
             steps {
                 script {
@@ -43,7 +43,7 @@ pipeline {
         }
         stage('getting info') {
             agent {
-                label 'docker'
+                label 'Docker'
             }
             steps {
                 script {
