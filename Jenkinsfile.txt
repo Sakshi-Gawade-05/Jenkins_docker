@@ -24,10 +24,12 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''cp -r /home/ubuntu/workspace/deploy/target/*.war 
+                    sh '''
+                    cp -r /home/ubuntu/workspace/deploy/target/*.war . 
                     docker login 
                     docker build -t sakshigawade/tomcat1 -f Dockerfile . 
-                    docker push sakshigawade/tomcat1'''
+                    docker push sakshigawade/tomcat1
+                    '''
                 }
             }
         }
