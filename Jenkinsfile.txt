@@ -25,7 +25,7 @@ pipeline {
             steps {
                 script {
                     sh '''
-                    cp -r /home/ubuntu/workspace/deploy/target/*.war . 
+                    cd /home/ubuntu/workspace/deploy
                     docker login 
                     docker build -t sakshigawade/tomcat1 -f Dockerfile . 
                     docker push sakshigawade/tomcat1
