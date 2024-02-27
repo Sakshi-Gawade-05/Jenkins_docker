@@ -24,11 +24,10 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''
-                    cd /home/ubuntu/workspace/deploy
-                    docker build -t sakshigawade/tomcat1 -f Dockerfile . 
-                    docker push sakshigawade/tomcat1
-                    '''
+                      sh '''cp -r /var/lib/jenkins/workspace/deploy/target/*.war .
+                    docker build -t deepakumre/tomcat1 . 
+                    docker login 
+                    docker push deepakumre/tomcat1'''
                 }
             }
         }
