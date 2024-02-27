@@ -17,17 +17,18 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-    
+        
         stage('creating tomcat image Tomcat') {
             agent {
                 label 'Docker'
             }
-            steps {
-                script {
-                      sh '''cp -r /var/lib/jenkins/workspace/deploy/target/*.war .
-                    docker build -t deepakumre/tomcat1 . 
-                    docker login 
-                    docker push deepakumre/tomcat1'''
+             steps {
+                sh '''
+                    cd /home/ubuntu/workspace/k8/
+                    sudo docker login
+                    sudo docker build -t sakshigawade/tomcat1 -f Dockerfile .
+                    sudo docker push sakshigawade/tomcat1
+                '''
                 }
             }
         }
